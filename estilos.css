@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+body{
+    width: 375px;
+    background: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
+}
+input:focus {
+    outline: none;
+}
+strong{
+    color: black;
+}
+
+/*TOPO PAGINA */
+.topo{
+    width: 375px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+.opcao-lateral{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    margin-right: 20px;  
+}
+
+/*MENSAGENS DOS USUARIOS*/
+.corpo-mensagem{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 106px;
+    left: 0px;
+}
+
+/*MENSAGEM DE ENTRADA OU SAÍDA DO USUÁRIO*/
+.msg-sala{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 375px;
+    background: #DCDCDC;
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+.hora-msg{
+    color: #AAAAAA;
+    /*margin-left: 10px;*/
+}
+
+.entrada-sala{
+    width: 100%;
+    margin-left: 10px;
+    color:#969494;
+} 
+
+
+/*MENSAGEM PARA TODOS*/
+.msg-todos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 375px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+
+.msg-direcionada-todos{
+    margin-left: 10px;
+    color:#969494;
+} 
+
+/*MENSAGEM DIRECIONADA PARA ALGUEM */
+.msg-direcionada-alguem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 375px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+
+.msg-direcionada{
+    width: 100%;
+    margin-left: 10px;
+    color:#969494;
+}
+
+
+/*MENSAGEM RESERVADA PARA ALGUEM*/
+.msg-reservada{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 375px;
+    background: #FFDEDE;
+    border-radius: 2px;
+    margin-bottom: 4px;
+}
+
+.msg-reservada-alguem{
+    width: 100%;
+    margin-left: 10px;
+    color:#969494;
+}
+
+
+
+
+/* -------*/
+.box-msg{
+    width: 358px;
+    flex-wrap: wrap;
+}
+
+
+/*INPUT MENSANGEM */
+
+.roda-pe{
+    width: 375px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.digite-mensagem{
+    font-family: 'Roboto';
+    font-style: italic;
+    background-color: #FFFFFF;
+    border: none;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.enviar-msg{
+    font-size: 30px;
+    margin-right: 20px;
+}
