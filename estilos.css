@@ -11,6 +11,54 @@ strong{
     color: black;
 }
 
+/*TELA PARA COLOCAR O NOME DO USUÁRIO*/
+.nome-user{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 375px;
+    height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.logo-uol{
+    margin-top: 72px;
+}
+
+.logo-uol img{
+    width: 130px;
+    height: 92px;
+}
+
+.digitar-nome{
+    width: 261px;
+    height: 54px;
+    text-align: center;
+    background: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-top: 94px;
+}
+
+.enter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 109px;
+    height: 45px;
+    background: #E7E7E7;
+    border-radius: 9px;
+    margin-top: 15px;
+    color: #696969;
+    cursor: pointer;
+}
+
+
+
 /*TOPO PAGINA */
 .topo{
     width: 375px;
@@ -59,7 +107,6 @@ strong{
 }
 .hora-msg{
     color: #AAAAAA;
-    /*margin-left: 10px;*/
 }
 
 .entrada-sala{
@@ -67,6 +114,11 @@ strong{
     margin-left: 10px;
     color:#969494;
 } 
+.saida-sala{
+    width: 100%;
+    margin-left: 10px;
+    color:#969494;
+}
 
 
 /*MENSAGEM PARA TODOS*/
@@ -143,6 +195,7 @@ strong{
     position: fixed;
     left: 0;
     bottom: 0;
+   
 }
 
 .digite-mensagem{
@@ -157,4 +210,8 @@ strong{
 .enviar-msg{
     font-size: 30px;
     margin-right: 20px;
+}
+
+.ocultar-pg-msg{
+    display: none;
 }
