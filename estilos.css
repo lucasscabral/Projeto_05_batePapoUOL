@@ -11,6 +11,8 @@ strong{
     color: black;
 }
 
+
+
 /*TELA PARA COLOCAR O NOME DO USUÁRIO*/
 .nome-user{
     display: flex;
@@ -71,6 +73,7 @@ strong{
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
 }
 .logo{
     display: flex;
@@ -93,6 +96,12 @@ strong{
     flex-direction: column;
     top: 106px;
     left: 0px;
+    overflow: scroll;
+    height: 600px;
+    z-index: 0;
+}
+.corpo-mensagem::-webkit-scrollbar {
+    display: none;
 }
 
 /*MENSAGEM DE ENTRADA OU SAÍDA DO USUÁRIO*/
@@ -208,8 +217,13 @@ strong{
 }
 
 .enviar-msg{
+    cursor: pointer;
     font-size: 30px;
     margin-right: 20px;
+    transition: 0.3s;
+}
+.enviar-msg:hover{
+    font-size: 35px;
 }
 
 .ocultar-pg-msg{
