@@ -1,52 +1,39 @@
-let nomeUser ;
-let nomeOjeto;
-let conteudosMsg = [{
-    from: nomeUser,
-    to: "Todos",
-    text: "entra na sala...",
-    type: "status",
-    time: "08:01:17"
-}]
+let nomeUser;
+let participante;
+let mensagensDoChat;
+let mensagemDoParticipante;
+
+
 function entrarNaSala(){
     nomeUser = document.querySelector(".digitar-nome").value;
-    nomeOjeto = { 
+    participante = { 
         name: nomeUser,
     }
 
    const telaEntrada = document.querySelector(".nome-user");
    telaEntrada.classList.add("ocultar-pg-msg");
 
+    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", participante);
  
-    const requisicao = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants ",nomeOjeto);
-
-
     requisicao.then(abrirSala);
     requisicao.catch(erroNomeUsado);
-    aparecerMensagem()
 }
-function erroNomeUsado(error){
-    while(error.response.status === 400){
-        prompt("Esse nome já está em uso, use outro nome!");
-        if(error.response.status === 200){
-            mandarMensagem()
-        }
-    }
 
+function erroNomeUsado(error){
+    if(error.response.status === 400){
+        alert("Esse nome já está em uso, use outro nome!");
+        window.location.reload();
+    }
 }
 
 function abrirSala(){
-    console.log(nomeOjeto);
-    const corporMensagem = document.querySelector(".corpo-mensagem");
-    corporMensagem.innerHTML += `    <div class="msg-sala">
-                                         <div class="box-msg">
-                                             <span class="hora-msg">${conteudosMsg[0].time}</span>
-                                             <span class="entrada-sala"><strong>${nomeOjeto.name}</strong> entrou na sala... </span>
-                                         </div>
-                                     </div>`
+    mostrarSala();
+    carregarMensagem();
+    mandarMensagem();
+    setInterval(carregarMensagem, 5000);
 }
 
-
-function aparecerMensagem(){
+function mostrarSala(){
     const topo = document.querySelector(".topo");
     topo.classList.remove("ocultar-pg-msg");
 
@@ -57,43 +44,59 @@ function aparecerMensagem(){
     rodaPe.classList.remove("ocultar-pg-msg");
 }
 
-function mandarMensagem(){
-    let promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
-    promise.then(function(){
-        const corporMensagem = document.querySelector(".corpo-mensagem");
-        let msgUser = document.querySelector(".digite-mensagem").value;
-       
-        corporMensagem.innerHTML += `     <div class="msg-sala">
-                                                <div class="box-msg">
-                                                    <span class="hora-msg">${conteudosMsg[0].time}</span>
-                                                    <span class="entrada-sala"><strong>${nomeOjeto.name}</strong> ${msgUser} </span>
-                                                </div>
-                                          </div>`                     
-        corporMensagem.scrollIntoView();
-        //verificarUserOnline()
-      //setInterval(location.reload(),3000);  
-    })
- 
+function carregarMensagem(){
+    const mensagens = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
+
+    console.log(mensagens);
+    mensagens.then(listarMensagens);
 }
 
-/*function verificarUserOnline(){
-    console.log("Verificando....");
-    
-    let tempoResposta =  setInterval(function(){
-        let tempoOnline = axios.post("https://mock-api.driven.com.br/api/v6/uol/status"),nomeOjeto; 
-    },5000);
+function listarMensagens(resposta){
+    mensagensDoChat = resposta.data;
 
-    if(tempoResposta > 5000){
-        const corporMensagem = document.querySelector(".corpo-mensagem");
-        corporMensagem.innerHTML +=`<div class="msg-sala">
+    const corporMensagem = document.querySelector(".corpo-mensagem");
+
+    corporMensagem.innerHTML = "";
+    let conteudoMensagem = "";
+
+    for(let i=0; i<mensagensDoChat.length; i++){
+        conteudoMensagem += `<div class="msg-todos">
                                         <div class="box-msg">
-                                            <span class="hora-msg">(09:21:45)</span>
-                                            <span class="saida-sala"><strong>${nomeOjeto.name}</strong> Saiu da sala... </span>
+                                            <span class="hora-msg">${mensagensDoChat[i].time}</span>
+                                            <span class="msg-direcionada-todos"><strong>${mensagensDoChat[i].from}</strong> para <strong>${mensagensDoChat[i].to}</strong>:  ${mensagensDoChat[i].text}</span>
                                         </div>
                                     </div>`
-
     }
-}*/
+
+      corporMensagem.innerHTML = conteudoMensagem;
+}
+
+function mandarMensagem(){
+    mensagemDoParticipante = document.querySelector(".digite-mensagem").value;
+
+    mensagem = {
+        from:participante,
+        to:"Todos",
+        text:mensagemDoParticipante,
+        type:"message"
+    }
+    let resposta = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", mensagem);
+    resposta.then(renderizarMensagem)    
+}
+
+function renderizarMensagem(){
+    carregarMensagem()
+}
 
 
-// msgUser.style.cssText = "font-family: 'Roboto', sans-serif;"
+
+
+
+
+
+
+
+
+
+
+
