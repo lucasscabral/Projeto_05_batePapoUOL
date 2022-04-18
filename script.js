@@ -47,7 +47,6 @@ function mostrarSala(){
 function carregarMensagem(){
     const mensagens = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
 
-    console.log(mensagens);
     mensagens.then(listarMensagens);
 }
 
@@ -101,7 +100,6 @@ function listarMensagens(resposta){
 
 function mandarMensagem(){
     mensagemDoParticipante = document.querySelector(".digite-mensagem").value;
-    console.log(mensagemDoParticipante);
     document.querySelector(".digite-mensagem").value = '';
 
     mensagem = {
@@ -116,8 +114,6 @@ function mandarMensagem(){
 
 
 function verificarUserOnline(){
-    console.log("Verificando....");
-    
     setInterval(verificandoStatus,5000);
 }
 function verificandoStatus(){
@@ -128,20 +124,16 @@ function verificandoStatus(){
 
 
 function usuarioOnline(resposta){
-    console.log(resposta.status);
     if(resposta.status === 200){
         carregarMensagem()  ;
     }
 }
 
 function usuarioOffline(error){
-    console.log(error.response.status); 
     if(error.response.status === 400){
         alert("Você foi desconectado da sala por inatividade");
         window.location.reload();
     }
-   
-    
 }
 
 
